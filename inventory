@@ -1,0 +1,2 @@
+[hosts]
+linux-host ansible_user=vagrant ansible_ssh_host=172.16.10.10 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key

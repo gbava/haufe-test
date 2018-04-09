@@ -1,0 +1,15 @@
+- name: Disable SELinux
+  selinux:
+    state: disabled
+
+- name: Upgrade all OS packages
+  package:
+    name: '*'
+    state: latest
+
+- name: Inject hostname and ip in /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: "{{ haufe_gitlab_hostname }}$"
+    line: '{{ haufe_gitlab_ip }}  {{ haufe_gitlab_hostname }}'
+    state: present

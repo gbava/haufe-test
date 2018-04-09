@@ -1,0 +1,13 @@
+---
+- name: Setup vm
+  hosts: linux-host
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: setup, tags: setup }
+
+- name: Docker
+  hosts: linux-host
+  gather_facts: yes
+  roles:
+    - { role: docker, tags: docker }

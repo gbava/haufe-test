@@ -1,0 +1,9 @@
+haufe_gitlab_ip: 54.77.96.50
+haufe_gitlab_hostname: gitlab.haufe-umantis.com
+
+image_name: http_info
+image_version: 1
+base_image: nginx
+image_maintainer: gbava
+image_maintainer_email: gaston.bava@email.cz
+image_port: 80

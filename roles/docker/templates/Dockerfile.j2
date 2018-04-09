@@ -1,0 +1,4 @@
+FROM {{ base_image }}
+MAINTAINER {{ image_maintainer_email }}
+COPY index.html /usr/share/nginx/html
+EXPOSE {{ image_port }}

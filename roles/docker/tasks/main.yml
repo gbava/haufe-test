@@ -1,0 +1,43 @@
+---
+
+- name: Install Docker container engine packages
+  include_tasks: pkg.yml
+
+- name: Enable and start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Ensure docker group is present
+  group: name=docker
+  state: present
+  become: yes
+
+- name: Add user to docker group
+  user: name="{{ ansible_env.USER }}" groups=docker append=yes
+  become: yes
+
+- name: Create build directory
+  file:
+    path: "{{ ansible_env.HOME }}/build"
+    state: directory
+
+- name: Copy Dockerfile template
+  template: src=Dockerfile.j2 dest={{ ansible_env.HOME }}/build/Dockerfile
+
+- name: Copy index.html file
+  copy:
+    src: index.html
+    dest: "{{ ansible_env.HOME }}/build"
+
+- name: Build Docker image
+  docker_image:
+     path: "{{ ansible_env.HOME }}/build"
+     name: "{{ image_maintainer }}/{{ image_name }}"
+     tag: "v{{ image_version }}"
+     buildargs:
+       log_volume: "/var/log/{{ image_name }}"
+       listen_port: "{{ image_port }}"
+  become: yes
