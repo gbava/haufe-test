@@ -11,8 +11,4 @@
 - A bash script that lists all users on the system (output should print only the usernames, one per line)
 - A bash script that correlates (via PID) all running processes with open network ports (output should print the binary path and the port number, one per line)
 
-# Output
-Se configura kubernetes con los tres nodos:
-
-
 
